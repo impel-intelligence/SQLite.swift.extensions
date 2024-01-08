@@ -7,6 +7,17 @@ public protocol DataExpressibleValue {
     func dataValue() -> Data
 }
 
+public extension DataExpressibleValue where Self: Codable {
+    static func defaultFromData(_ data: Data, defaultValue: Self) -> Self {
+        return (try? JSONDecoder().decode(Self.self, from: data)) ?? defaultValue
+    }
+    
+    func defaultDataValue() -> Data {
+        let data = try? JSONEncoder().encode(self)
+        return data ?? Data()
+    }
+}
+
 extension Array: DataExpressibleValue where Element: DataExpressibleValue {
     public static func fromData(_ data: Data) -> Array<Element> {
         let dataValues: [Data] = (try? JSONDecoder().decode([Data].self, from: data)) ?? []
