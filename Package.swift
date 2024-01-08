@@ -11,11 +11,16 @@ let package = Package(
             name: "SQLite.swift.extensions",
             targets: ["SQLite.swift.extensions"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.14.1"),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SQLite.swift.extensions"),
+            name: "SQLite.swift.extensions", dependencies: [
+                .product(name: "SQLite", package: "SQLite.swift"),
+            ]),
         .testTarget(
             name: "SQLite.swift.extensionsTests",
             dependencies: ["SQLite.swift.extensions"]),
