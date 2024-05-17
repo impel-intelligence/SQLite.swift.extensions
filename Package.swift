@@ -7,9 +7,8 @@ let package = Package(
     name: "SQLite.swift.extensions",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "SQLite.swift.extensions",
-            targets: ["SQLite.swift.extensions"]),
+        .library(name: "SQLite.swift.extensions", targets: ["SQLite.swift.extensions"]),
+        .library(name: "Dynamic.SQLite.swift.extensions", targets: ["SQLite.swift.extensions"]),
     ],
     dependencies: [
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.14.1"),
